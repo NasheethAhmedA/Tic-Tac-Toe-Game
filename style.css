@@ -1,0 +1,244 @@
+/* global styles */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+/* variables */
+:root {
+  --cell-size: 100px;
+  --fill-size: calc(var(--cell-size) * 0.8);
+  --primary-color: #000;
+  --secondary-color: #f4f4f4;
+  --text-primary-color: #000;
+  --text-secondary-color: #f4f4f4;
+  --x-color: red;
+  --o-color: blue;
+  --hover-color: color-mix(
+    in srgb,
+    var(--primary-color) 10%,
+    var(--secondary-color)
+  );
+}
+
+/* body style */
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--secondary-color);
+}
+
+/* container style */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* board style */
+.board {
+  margin-bottom: 90px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  width: 100vw;
+  height: 60vh;
+  grid-template-columns: repeat(3, auto);
+}
+
+/* cell style */
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 10px solid var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+/* filled cell hover not allowed */
+.cell.x:hover,
+.cell.o:hover {
+  cursor: not-allowed;
+}
+
+/* cell border elimination */
+
+.cell:nth-child(9) {
+  border-right: none;
+  border-bottom: none;
+}
+
+.cell:nth-child(8) {
+  border-bottom: none;
+}
+
+.cell:nth-child(7) {
+  border-left: none;
+  border-bottom: none;
+}
+
+.cell:nth-child(6) {
+  border-right: none;
+}
+
+.cell:nth-child(4) {
+  border-left: none;
+}
+
+.cell:nth-child(3) {
+  border-right: none;
+  border-top: none;
+}
+
+.cell:nth-child(2) {
+  border-top: none;
+}
+
+.cell:nth-child(1) {
+  border-left: none;
+  border-top: none;
+}
+
+/* filled styles */
+
+/* x fill */
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+  content: "";
+  position: absolute;
+  width: calc(var(--fill-size) * 0.15);
+  height: var(--fill-size);
+  background-color: var(--primary-color);
+}
+
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+  background-color: var(--hover-color);
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.o):hover::before {
+  transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after {
+  transform: rotate(-45deg);
+}
+
+/* o fill*/
+
+.cell.o::before,
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before {
+  width: var(--fill-size);
+  height: var(--fill-size);
+  background-color: var(--primary-color);
+}
+
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after {
+  width: calc(var(--fill-size) * 0.7);
+  height: calc(var(--fill-size) * 0.7);
+  background-color: var(--secondary-color);
+}
+
+.board.o .cell:not(.x):not(.o):hover::before {
+  background-color: var(--hover-color);
+}
+
+.board.o .cell:not(.x):not(.o):hover::after {
+  background-color: var(--secondary-color);
+}
+
+.cell.x.win::before,
+.cell.x.win::after {
+  background-color: var(--x-color);
+}
+
+.cell.o.win::before {
+  background-color: var(--o-color);
+}
+
+/* status style */
+#status {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  margin-top: 2%;
+  font-size: 4rem;
+  font-weight: bold;
+  padding: 20px;
+}
+
+#status.x {
+  display: inline;
+  text-align: left;
+  background-color: var(--x-color);
+  color: var(--text-primary-color);
+}
+
+#status.o {
+  display: inline;
+  text-align: right;
+  background-color: var(--o-color);
+  color: var(--text-secondary-color);
+}
+
+#status.win {
+  display: inline;
+  text-align: center;
+}
+
+#status.tie {
+  display: inline;
+  text-align: center;
+  background-color: var(--primary-color);
+  color: var(--text-secondary-color);
+}
+
+/* game title style */
+#GameTitle {
+  color: var(--text-primary-color);
+  font-size: 4rem;
+  font-weight: bold;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+/* restart button style */
+
+#GameTitle.restart {
+  font-size: 2rem;
+  border: 5px solid var(--primary-color);
+  padding: 10px;
+  margin-top: 3%;
+}
+
+#GameTitle.restart:hover {
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--text-secondary-color);
+}
