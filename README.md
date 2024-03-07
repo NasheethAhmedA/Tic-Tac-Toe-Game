@@ -1,4 +1,4 @@
-## Tic Tac Toe Website Game
+## Tic Tac Toe Game
 
 ### Design:
 - **HTML:** Defines the game board, status bar, and Title/Restart button.
@@ -17,4 +17,4 @@
 3. **Game State Handling:** Dynamically updates game state based on moves, allowing adaptability to variations.
 4. **User Interaction:** Simple click-to-play functionality, with a restart button for convenience.
 
-In summary, this is a self-contained, efficient, and visually appealing Tic Tac Toe implementation, with a unique isomorphic approach and mathematical optimization for determining the winner.
+In summary, this is a self-contained, efficient, and visually appealing Tic Tac Toe implementation, with a unique isomorphic approach and mathematical optimization for determining the winner. The Game is [Available here!](https://nasheethahmeda.github.io/Tic-Tac-Toe-Game)
